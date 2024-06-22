@@ -1,3 +1,4 @@
+import 'package:app01/widgets/expenses.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,16 +17,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(),
-        body: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(colors: [
-              Colors.deepOrangeAccent,
-              Colors.purpleAccent,
-            ])),
-            child: Text("s")),
+      debugShowCheckedModeBanner: false,
+      title: 'Expenses App',
+      theme: ThemeData(
+        useMaterial3: true,
       ),
+      home: const Expenses(),
     );
   }
 }
