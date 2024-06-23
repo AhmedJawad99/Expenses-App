@@ -1,5 +1,6 @@
 import 'package:app01/models/expense.dart';
 import 'package:app01/widgets/expanses_list/expanses_list.dart';
+import 'package:app01/widgets/new_expense.dart';
 import 'package:flutter/material.dart';
 
 class Expenses extends StatefulWidget {
@@ -26,6 +27,11 @@ class _ExpensesState extends State<Expenses> {
         title: 'Cinema',
         amount: 24.5,
         date: DateTime.now()),
+    Expense(
+        category: Category.work,
+        title: 'Pen',
+        amount: 19.5,
+        date: DateTime.now()),
   ];
   @override
   Widget build(BuildContext context) {
@@ -39,11 +45,7 @@ class _ExpensesState extends State<Expenses> {
                 showModalBottomSheet(
                     context: context,
                     builder: (C) {
-                      return const SizedBox(
-                        height: 40,
-                        width: double.infinity,
-                        child: Text("data"),
-                      );
+                      return NewExpense();
                     });
               },
               icon: Icon(Icons.add))
