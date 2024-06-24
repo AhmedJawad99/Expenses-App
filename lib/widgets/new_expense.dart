@@ -35,7 +35,7 @@ class _NewExpenseState extends State<NewExpense> {
           TextField(
             controller: _titleController,
             maxLength: 50,
-            decoration: const InputDecoration(label: Text('Title')),
+            decoration: const InputDecoration(label: Text('Title for version')),
           ),
           Row(
             children: [
