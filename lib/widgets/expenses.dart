@@ -1,4 +1,5 @@
 import 'package:app01/models/expense.dart';
+import 'package:app01/widgets/chart/chart.dart';
 import 'package:app01/widgets/expanses_list/expanses_list.dart';
 import 'package:app01/widgets/new_expense.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +69,7 @@ class _ExpensesState extends State<Expenses> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('data'),
+          Chart(expenses: _registeredExpenses),
           Expanded(
             //Expanded to give the ListView a width
             child: ExpensesList(

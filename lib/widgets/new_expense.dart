@@ -29,13 +29,13 @@ class _NewExpenseState extends State<NewExpense> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
           TextField(
             controller: _titleController,
             maxLength: 50,
-            decoration: InputDecoration(label: Text('Title')),
+            decoration: const InputDecoration(label: Text('Title')),
           ),
           Row(
             children: [
@@ -47,7 +47,7 @@ class _NewExpenseState extends State<NewExpense> {
                       label: Text('Amount'), prefixText: '\$'),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 15,
               ),
               Expanded(
@@ -74,7 +74,7 @@ class _NewExpenseState extends State<NewExpense> {
                           _selectedDate = pickedDate;
                         });
                       },
-                      icon: Icon(Icons.calendar_month))
+                      icon: const Icon(Icons.calendar_month))
                 ],
               ))
             ],
@@ -85,8 +85,8 @@ class _NewExpenseState extends State<NewExpense> {
                   value: _SelectedCategory,
                   items: Category.values.map((e) {
                     return DropdownMenuItem(
-                      child: Text(e.name),
                       value: e,
+                      child: Text(e.name),
                     );
                   }).toList(),
                   onChanged: (newCat) {

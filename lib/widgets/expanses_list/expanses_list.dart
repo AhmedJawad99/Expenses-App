@@ -16,6 +16,9 @@ class ExpensesList extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return Dismissible(
             key: ValueKey(expenses[index]),
+            background: Container(
+                color: Theme.of(context).colorScheme.error,
+                margin: const EdgeInsets.symmetric(horizontal: 10)),
             onDismissed: (direction) {
               return onRemoveExpense(expenses[
                   index]); // this give it the old expense or the used expense
