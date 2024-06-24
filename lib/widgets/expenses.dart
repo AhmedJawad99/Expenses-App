@@ -33,11 +33,22 @@ class _ExpensesState extends State<Expenses> {
         amount: 19.5,
         date: DateTime.now()),
   ];
+  void _addExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+  }
+
+  void _removeExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.remove(expense);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
         title: const Text("Expenses"),
         actions: [
           IconButton(
@@ -45,7 +56,9 @@ class _ExpensesState extends State<Expenses> {
                 showModalBottomSheet(
                     context: context,
                     builder: (C) {
-                      return NewExpense();
+                      return NewExpense(
+                        onAddExpense: _addExpense,
+                      );
                     });
               },
               icon: Icon(Icons.add))
@@ -58,7 +71,10 @@ class _ExpensesState extends State<Expenses> {
           const Text('data'),
           Expanded(
             //Expanded to give the ListView a width
-            child: ExpensesList(expenses: _registeredExpenses),
+            child: ExpensesList(
+              expenses: _registeredExpenses,
+              onRemoveExpense: _removeExpense,
+            ),
           ),
         ],
       )),
