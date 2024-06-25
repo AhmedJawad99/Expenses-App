@@ -48,37 +48,56 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Expenses"),
-        actions: [
-          IconButton(
-              onPressed: () {
-                showModalBottomSheet(
-                    context: context,
-                    builder: (C) {
-                      return NewExpense(
-                        onAddExpense: _addExpense,
-                      );
-                    });
-              },
-              icon: Icon(Icons.add))
-        ],
-      ),
-      body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Chart(expenses: _registeredExpenses),
-          Expanded(
-            //Expanded to give the ListView a width
-            child: ExpensesList(
-              expenses: _registeredExpenses,
-              onRemoveExpense: _removeExpense,
-            ),
-          ),
-        ],
-      )),
-    );
+        appBar: AppBar(
+          title: const Text("Expenses"),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  showModalBottomSheet(
+                      useSafeArea: true,
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (C) {
+                        return NewExpense(
+                          onAddExpense: _addExpense,
+                        );
+                      });
+                },
+                icon: const Icon(Icons.add))
+          ],
+        ),
+        body: Center(
+          child: width < 600
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Chart(expenses: _registeredExpenses),
+                    ),
+                    Expanded(
+                      //Expanded to give the ListView a width
+                      child: ExpensesList(
+                        expenses: _registeredExpenses,
+                        onRemoveExpense: _removeExpense,
+                      ),
+                    ),
+                  ],
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(child: Chart(expenses: _registeredExpenses)),
+                    Expanded(
+                      //Expanded to give the ListView a width
+                      child: ExpensesList(
+                        expenses: _registeredExpenses,
+                        onRemoveExpense: _removeExpense,
+                      ),
+                    ),
+                  ],
+                ),
+        ));
   }
 }
